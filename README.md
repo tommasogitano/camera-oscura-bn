@@ -13,7 +13,8 @@ Di Tommaso Scicchitano, [tommasoautore.it](https://tommasoautore.it).
 
 **Software libero e gratuito**, nato per amore della fotografia e aperto a chi
 vuole usarlo, studiarlo, migliorarlo e condividerlo. Si distribuisce con
-licenza GNU GPL 3.0.
+licenza GNU GPL 3.0. Codice e versioni:
+[github.com/tommasogitano/camera-oscura-bn](https://github.com/tommasogitano/camera-oscura-bn).
 
 ## Requisiti
 
@@ -24,7 +25,8 @@ licenza GNU GPL 3.0.
 
 ## Installazione
 
-1. Scarica il file `CameraOscuraBN-1.0.0.ccx`.
+1. Scarica il file `CameraOscuraBN-1.0.0.ccx` dalla pagina delle
+   [versioni](https://github.com/tommasogitano/camera-oscura-bn/releases/latest).
 2. Fai doppio clic sul file: Creative Cloud chiede conferma e installa il plugin.
    Poiche il plugin non arriva dal Marketplace Adobe, compare un avviso: va
    accettato una volta sola.

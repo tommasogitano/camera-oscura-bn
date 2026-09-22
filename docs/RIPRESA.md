@@ -29,8 +29,8 @@ Aggiornato il 22 settembre 2026, sera.
 
 ## Cosa resta
 
-1. Pubblicare il repository: serve un account GitHub di Tommaso (o Codeberg). `gh` non e installato; si puo fare dal sito o installando GitHub CLI.
-2. Pubblicare `dist/CameraOscuraBN-1.0.0.ccx` come release del repository e con un link da tommasoautore.it.
+1. FATTO il 22 settembre: repository pubblico https://github.com/tommasogitano/camera-oscura-bn (account GitHub `tommasogitano`), ramo `main`, tag `v1.0.0`, release 1.0.0 con il .ccx allegato. Il push da Windows funziona (credenziali gia salvate).
+2. Mettere un link da tommasoautore.it alla pagina https://github.com/tommasogitano/camera-oscura-bn/releases/latest.
 3. Facoltativo: Marketplace Adobe come plugin gratuito; prova su Mac e su Photoshop 2025, poi abbassare `minVersion`; versione inglese del pannello.
 
 ## Ciclo di lavoro
