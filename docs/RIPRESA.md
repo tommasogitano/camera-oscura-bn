@@ -21,12 +21,17 @@ Aggiornato il 22 settembre 2026, sera.
 - Copia di sviluppo rimossa (spostata in `_da-eliminare/installazione-sviluppo/`), .ccx installato con `UnifiedPluginInstallerAgent.exe /install`: Photoshop lo carica da `%APPDATA%\Adobe\UXP\Plugins\External\it.tommasoscicchitano.cameraoscura_1.0.0`. Sviluppo provato: funziona.
 - `strumenti/installa-plugin.bat` ora crea il .ccx e lo installa con lo stesso installatore (il vecchio copiava i file in una cartella che Photoshop non legge piu).
 
-## Cosa resta (decisioni di Tommaso)
+## Software libero (22 settembre, sera)
 
-1. Scegliere il canale: distribuzione diretta da tommasoautore.it (consigliata per la 1.0) o Marketplace Adobe.
-2. Distribuzione gratuita e libera, aperta alla collaborazione (decisione di Tommaso, 22 settembre).
-3. Licenza: scelta GPL-3.0 (22 settembre). Prossimo passo: pubblicare il repository (GitHub) e il .ccx come release.
-4. Facoltativo: prova su Mac e su Photoshop 2025, poi abbassare `minVersion`.
+- Decisione di Tommaso: distribuzione gratuita, aperta alla collaborazione e allo sviluppo, "per amore della fotografia". Licenza scelta: GNU GPL 3.0.
+- Fatto: `LICENSE` (testo ufficiale GPL-3.0, anche dentro `bn-studio/` e quindi nel .ccx), sezioni "Collaborare" e "Licenza" nel README, `CONTRIBUIRE.md`, intestazione di licenza in tutti i file .js, `.gitignore` (esclusi `_da-eliminare/`, `prove/`, `dist/`), .ccx rigenerato.
+- Repository git inizializzato da Windows (non dalla macchina virtuale: li git non puo cancellare i temporanei), ramo `main`, primo commit.
+
+## Cosa resta
+
+1. Pubblicare il repository: serve un account GitHub di Tommaso (o Codeberg). `gh` non e installato; si puo fare dal sito o installando GitHub CLI.
+2. Pubblicare `dist/CameraOscuraBN-1.0.0.ccx` come release del repository e con un link da tommasoautore.it.
+3. Facoltativo: Marketplace Adobe come plugin gratuito; prova su Mac e su Photoshop 2025, poi abbassare `minVersion`; versione inglese del pannello.
 
 ## Ciclo di lavoro
 
