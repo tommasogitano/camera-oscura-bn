@@ -1,0 +1,89 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+   xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+   crs:PresetType="Normal"
+   crs:UUID="975C9EFB71B1A036D138ACE44E165EA5"
+   crs:SupportsAmount="False"
+   crs:SupportsColor="True"
+   crs:SupportsMonochrome="True"
+   crs:SupportsHighDynamicRange="True"
+   crs:SupportsNormalDynamicRange="True"
+   crs:SupportsSceneReferred="True"
+   crs:SupportsOutputReferred="True"
+   crs:CameraModelRestriction=""
+   crs:Copyright=""
+   crs:ContactInfo=""
+   crs:Version="16.0"
+   crs:ProcessVersion="15.4"
+   crs:ConvertToGrayscale="True"
+   crs:Treatment="Black &amp; White"
+   crs:WhiteBalance="As Shot"
+   crs:Contrast2012="20"
+   crs:Blacks2012="-8"
+   crs:Whites2012="14"
+   crs:Clarity2012="0"
+   crs:Texture="0"
+   crs:Dehaze="0"
+   crs:GrayMixerRed="78"
+   crs:GrayMixerOrange="78"
+   crs:GrayMixerYellow="78"
+   crs:GrayMixerGreen="83"
+   crs:GrayMixerAqua="-59"
+   crs:GrayMixerBlue="-55"
+   crs:GrayMixerPurple="-30"
+   crs:GrayMixerMagenta="-5"
+   crs:GrainAmount="30"
+   crs:GrainSize="35"
+   crs:GrainFrequency="36"
+   crs:PostCropVignetteAmount="0">
+   <crs:Name>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Infrarosso 400</rdf:li>
+    </rdf:Alt>
+   </crs:Name>
+   <crs:Group>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Camera Oscura BN</rdf:li>
+    </rdf:Alt>
+   </crs:Group>
+   <crs:Description>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Con filtro infrarosso: fogliame bianco, cielo nero, alone luminoso. Vale la pena solo se nella scena c'e verde vivo.</rdf:li>
+    </rdf:Alt>
+   </crs:Description>
+   <crs:ToneCurvePV2012>
+    <rdf:Seq>
+     <rdf:li>0, 2</rdf:li>
+     <rdf:li>28, 16</rdf:li>
+     <rdf:li>57, 40</rdf:li>
+     <rdf:li>85, 75</rdf:li>
+     <rdf:li>113, 115</rdf:li>
+     <rdf:li>142, 156</rdf:li>
+     <rdf:li>170, 197</rdf:li>
+     <rdf:li>198, 225</rdf:li>
+     <rdf:li>227, 242</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012>
+   <crs:ToneCurvePV2012Red>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Red>
+   <crs:ToneCurvePV2012Green>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Green>
+   <crs:ToneCurvePV2012Blue>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Blue>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>

@@ -1,0 +1,89 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+   xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+   crs:PresetType="Normal"
+   crs:UUID="2F071675FED4204512543878E9B5AF43"
+   crs:SupportsAmount="False"
+   crs:SupportsColor="True"
+   crs:SupportsMonochrome="True"
+   crs:SupportsHighDynamicRange="True"
+   crs:SupportsNormalDynamicRange="True"
+   crs:SupportsSceneReferred="True"
+   crs:SupportsOutputReferred="True"
+   crs:CameraModelRestriction=""
+   crs:Copyright=""
+   crs:ContactInfo=""
+   crs:Version="16.0"
+   crs:ProcessVersion="15.4"
+   crs:ConvertToGrayscale="True"
+   crs:Treatment="Black &amp; White"
+   crs:WhiteBalance="As Shot"
+   crs:Contrast2012="27"
+   crs:Blacks2012="-15"
+   crs:Whites2012="10"
+   crs:Clarity2012="20"
+   crs:Texture="0"
+   crs:Dehaze="0"
+   crs:GrayMixerRed="8"
+   crs:GrayMixerOrange="10"
+   crs:GrayMixerYellow="12"
+   crs:GrayMixerGreen="2"
+   crs:GrayMixerAqua="-9"
+   crs:GrayMixerBlue="-5"
+   crs:GrayMixerPurple="-2"
+   crs:GrayMixerMagenta="0"
+   crs:GrainAmount="52"
+   crs:GrainSize="42"
+   crs:GrainFrequency="26"
+   crs:PostCropVignetteAmount="0">
+   <crs:Name>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Reportage ad alta grana</rdf:li>
+    </rdf:Alt>
+   </crs:Name>
+   <crs:Group>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Camera Oscura BN</rdf:li>
+    </rdf:Alt>
+   </crs:Group>
+   <crs:Description>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Stampa tirata: contrasto duro, grana in evidenza, mezzitoni sacrificati alla forza del gesto.</rdf:li>
+    </rdf:Alt>
+   </crs:Description>
+   <crs:ToneCurvePV2012>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>28, 11</rdf:li>
+     <rdf:li>57, 33</rdf:li>
+     <rdf:li>85, 68</rdf:li>
+     <rdf:li>113, 112</rdf:li>
+     <rdf:li>142, 155</rdf:li>
+     <rdf:li>170, 197</rdf:li>
+     <rdf:li>198, 224</rdf:li>
+     <rdf:li>227, 242</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012>
+   <crs:ToneCurvePV2012Red>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Red>
+   <crs:ToneCurvePV2012Green>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Green>
+   <crs:ToneCurvePV2012Blue>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Blue>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>

@@ -1,0 +1,89 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+   xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+   crs:PresetType="Normal"
+   crs:UUID="A0CDF3CFBACD311D478BEF469BC3163B"
+   crs:SupportsAmount="False"
+   crs:SupportsColor="True"
+   crs:SupportsMonochrome="True"
+   crs:SupportsHighDynamicRange="True"
+   crs:SupportsNormalDynamicRange="True"
+   crs:SupportsSceneReferred="True"
+   crs:SupportsOutputReferred="True"
+   crs:CameraModelRestriction=""
+   crs:Copyright=""
+   crs:ContactInfo=""
+   crs:Version="16.0"
+   crs:ProcessVersion="15.4"
+   crs:ConvertToGrayscale="True"
+   crs:Treatment="Black &amp; White"
+   crs:WhiteBalance="As Shot"
+   crs:Contrast2012="10"
+   crs:Blacks2012="-8"
+   crs:Whites2012="5"
+   crs:Clarity2012="0"
+   crs:Texture="0"
+   crs:Dehaze="0"
+   crs:GrayMixerRed="0"
+   crs:GrayMixerOrange="0"
+   crs:GrayMixerYellow="0"
+   crs:GrayMixerGreen="0"
+   crs:GrayMixerAqua="0"
+   crs:GrayMixerBlue="0"
+   crs:GrayMixerPurple="0"
+   crs:GrayMixerMagenta="0"
+   crs:GrainAmount="18"
+   crs:GrainSize="21"
+   crs:GrainFrequency="54"
+   crs:PostCropVignetteAmount="0">
+   <crs:Name>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Tabulare 400</rdf:li>
+    </rdf:Alt>
+   </crs:Name>
+   <crs:Group>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Camera Oscura BN</rdf:li>
+    </rdf:Alt>
+   </crs:Group>
+   <crs:Description>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">La sensibilita della Strada 400 con la grana della Lama 100: compromesso moderno fra rapidita e pulizia.</rdf:li>
+    </rdf:Alt>
+   </crs:Description>
+   <crs:ToneCurvePV2012>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>28, 20</rdf:li>
+     <rdf:li>57, 47</rdf:li>
+     <rdf:li>85, 79</rdf:li>
+     <rdf:li>113, 113</rdf:li>
+     <rdf:li>142, 147</rdf:li>
+     <rdf:li>170, 180</rdf:li>
+     <rdf:li>198, 209</rdf:li>
+     <rdf:li>227, 233</rdf:li>
+     <rdf:li>255, 254</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012>
+   <crs:ToneCurvePV2012Red>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Red>
+   <crs:ToneCurvePV2012Green>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Green>
+   <crs:ToneCurvePV2012Blue>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Blue>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>

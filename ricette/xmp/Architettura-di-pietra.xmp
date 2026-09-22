@@ -1,0 +1,89 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+   xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+   crs:PresetType="Normal"
+   crs:UUID="F25AC9770336D6DD22F4FF8402C37B2E"
+   crs:SupportsAmount="False"
+   crs:SupportsColor="True"
+   crs:SupportsMonochrome="True"
+   crs:SupportsHighDynamicRange="True"
+   crs:SupportsNormalDynamicRange="True"
+   crs:SupportsSceneReferred="True"
+   crs:SupportsOutputReferred="True"
+   crs:CameraModelRestriction=""
+   crs:Copyright=""
+   crs:ContactInfo=""
+   crs:Version="16.0"
+   crs:ProcessVersion="15.4"
+   crs:ConvertToGrayscale="True"
+   crs:Treatment="Black &amp; White"
+   crs:WhiteBalance="As Shot"
+   crs:Contrast2012="15"
+   crs:Blacks2012="-11"
+   crs:Whites2012="5"
+   crs:Clarity2012="26"
+   crs:Texture="22"
+   crs:Dehaze="0"
+   crs:GrayMixerRed="26"
+   crs:GrayMixerOrange="25"
+   crs:GrayMixerYellow="24"
+   crs:GrayMixerGreen="0"
+   crs:GrayMixerAqua="-24"
+   crs:GrayMixerBlue="-21"
+   crs:GrayMixerPurple="-10"
+   crs:GrayMixerMagenta="0"
+   crs:GrainAmount="16"
+   crs:GrainSize="19"
+   crs:GrainFrequency="52"
+   crs:PostCropVignetteAmount="0">
+   <crs:Name>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Architettura di pietra</rdf:li>
+    </rdf:Alt>
+   </crs:Name>
+   <crs:Group>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Camera Oscura BN</rdf:li>
+    </rdf:Alt>
+   </crs:Group>
+   <crs:Description>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Intonaco, tufo, granito: microcontrasto alto e cielo trattenuto dal filtro arancio.</rdf:li>
+    </rdf:Alt>
+   </crs:Description>
+   <crs:ToneCurvePV2012>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>28, 15</rdf:li>
+     <rdf:li>57, 39</rdf:li>
+     <rdf:li>85, 74</rdf:li>
+     <rdf:li>113, 113</rdf:li>
+     <rdf:li>142, 150</rdf:li>
+     <rdf:li>170, 186</rdf:li>
+     <rdf:li>198, 214</rdf:li>
+     <rdf:li>227, 235</rdf:li>
+     <rdf:li>255, 252</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012>
+   <crs:ToneCurvePV2012Red>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Red>
+   <crs:ToneCurvePV2012Green>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Green>
+   <crs:ToneCurvePV2012Blue>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Blue>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>

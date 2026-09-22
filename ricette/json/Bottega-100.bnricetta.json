@@ -1,0 +1,114 @@
+{
+  "versione": 1,
+  "nome": "Bottega 100",
+  "pellicola": "apx100",
+  "note": "Contrasto teutonico e neri asciutti: geometrie, ombre nette, sole di taglio.",
+  "conversione": {
+    "rosso": 40,
+    "giallo": 58,
+    "verde": 42,
+    "ciano": 62,
+    "blu": 17,
+    "magenta": 82,
+    "filtro": "nessuno",
+    "intensitaFiltro": 100,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 22,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 30,
+    "esaltaBianchi": 6,
+    "curva": [
+      [
+        0,
+        0
+      ],
+      [
+        32,
+        20
+      ],
+      [
+        64,
+        53
+      ],
+      [
+        128,
+        133
+      ],
+      [
+        192,
+        207
+      ],
+      [
+        255,
+        255
+      ]
+    ],
+    "chiarezza": 0,
+    "struttura": 0,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 11,
+    "dimensione": 0.8,
+    "ruvidita": 40,
+    "ombre": 46,
+    "mezzitoni": 100,
+    "luci": 30,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "nessuno",
+    "intensitaViraggio": 60,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

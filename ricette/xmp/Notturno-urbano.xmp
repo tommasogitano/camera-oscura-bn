@@ -1,0 +1,95 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+   xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+   crs:PresetType="Normal"
+   crs:UUID="F447171011206F3617B37D30BD2873C2"
+   crs:SupportsAmount="False"
+   crs:SupportsColor="True"
+   crs:SupportsMonochrome="True"
+   crs:SupportsHighDynamicRange="True"
+   crs:SupportsNormalDynamicRange="True"
+   crs:SupportsSceneReferred="True"
+   crs:SupportsOutputReferred="True"
+   crs:CameraModelRestriction=""
+   crs:Copyright=""
+   crs:ContactInfo=""
+   crs:Version="16.0"
+   crs:ProcessVersion="15.4"
+   crs:ConvertToGrayscale="True"
+   crs:Treatment="Black &amp; White"
+   crs:WhiteBalance="As Shot"
+   crs:Contrast2012="22"
+   crs:Blacks2012="-20"
+   crs:Whites2012="13"
+   crs:Clarity2012="10"
+   crs:Texture="0"
+   crs:Dehaze="0"
+   crs:GrayMixerRed="0"
+   crs:GrayMixerOrange="0"
+   crs:GrayMixerYellow="0"
+   crs:GrayMixerGreen="0"
+   crs:GrayMixerAqua="0"
+   crs:GrayMixerBlue="0"
+   crs:GrayMixerPurple="0"
+   crs:GrayMixerMagenta="0"
+   crs:GrainAmount="58"
+   crs:GrainSize="50"
+   crs:GrainFrequency="28"
+   crs:PostCropVignetteAmount="0"
+   crs:ColorGradeShadowLum="0"
+   crs:SplitToningShadowHue="215"
+   crs:SplitToningShadowSaturation="14"
+   crs:SplitToningHighlightHue="44"
+   crs:SplitToningHighlightSaturation="6"
+   crs:SplitToningBalance="-10">
+   <crs:Name>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Notturno urbano</rdf:li>
+    </rdf:Alt>
+   </crs:Name>
+   <crs:Group>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Camera Oscura BN</rdf:li>
+    </rdf:Alt>
+   </crs:Group>
+   <crs:Description>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Lampioni, asfalto bagnato, neri profondi con grana viva: la citta dopo la pioggia.</rdf:li>
+    </rdf:Alt>
+   </crs:Description>
+   <crs:ToneCurvePV2012>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>28, 8</rdf:li>
+     <rdf:li>57, 26</rdf:li>
+     <rdf:li>85, 61</rdf:li>
+     <rdf:li>113, 105</rdf:li>
+     <rdf:li>142, 150</rdf:li>
+     <rdf:li>170, 193</rdf:li>
+     <rdf:li>198, 222</rdf:li>
+     <rdf:li>227, 241</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012>
+   <crs:ToneCurvePV2012Red>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Red>
+   <crs:ToneCurvePV2012Green>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Green>
+   <crs:ToneCurvePV2012Blue>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Blue>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>

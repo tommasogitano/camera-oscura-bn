@@ -1,0 +1,110 @@
+{
+  "versione": 1,
+  "nome": "Infrarosso 400",
+  "pellicola": "rolleiIR",
+  "note": "Con filtro infrarosso: fogliame bianco, cielo nero, alone luminoso. Vale la pena solo se nella scena c'e verde vivo.",
+  "conversione": {
+    "rosso": 46,
+    "giallo": 66,
+    "verde": 42,
+    "ciano": 54,
+    "blu": 24,
+    "magenta": 82,
+    "filtro": "infrarosso",
+    "intensitaFiltro": 85,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 24,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 18,
+    "esaltaBianchi": 30,
+    "curva": [
+      [
+        0,
+        2
+      ],
+      [
+        32,
+        24
+      ],
+      [
+        128,
+        136
+      ],
+      [
+        192,
+        214
+      ],
+      [
+        255,
+        255
+      ]
+    ],
+    "chiarezza": 0,
+    "struttura": 0,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 30,
+    "dimensione": 1.3,
+    "ruvidita": 64,
+    "ombre": 70,
+    "mezzitoni": 100,
+    "luci": 58,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "nessuno",
+    "intensitaViraggio": 60,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

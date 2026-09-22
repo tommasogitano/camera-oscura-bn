@@ -1,0 +1,110 @@
+{
+  "versione": 1,
+  "nome": "Stampa al platino",
+  "pellicola": "platino",
+  "note": "Scala lunga e delicata, neri caldi che non chiudono mai del tutto: la resa delle stampe al platino-palladio.",
+  "conversione": {
+    "rosso": 40,
+    "giallo": 64,
+    "verde": 44,
+    "ciano": 60,
+    "blu": 22,
+    "magenta": 78,
+    "filtro": "nessuno",
+    "intensitaFiltro": 100,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": -6,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 0,
+    "esaltaBianchi": 10,
+    "curva": [
+      [
+        0,
+        16
+      ],
+      [
+        64,
+        74
+      ],
+      [
+        128,
+        134
+      ],
+      [
+        192,
+        194
+      ],
+      [
+        255,
+        244
+      ]
+    ],
+    "chiarezza": -6,
+    "struttura": 0,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 10,
+    "dimensione": 1.1,
+    "ruvidita": 30,
+    "ombre": 50,
+    "mezzitoni": 80,
+    "luci": 40,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "platino",
+    "intensitaViraggio": 70,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

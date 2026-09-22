@@ -1,0 +1,96 @@
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description rdf:about=""
+   xmlns:crs="http://ns.adobe.com/camera-raw-settings/1.0/"
+   crs:PresetType="Normal"
+   crs:UUID="C6D302F7A7B72B47E483AACDA0FF47F5"
+   crs:SupportsAmount="False"
+   crs:SupportsColor="True"
+   crs:SupportsMonochrome="True"
+   crs:SupportsHighDynamicRange="True"
+   crs:SupportsNormalDynamicRange="True"
+   crs:SupportsSceneReferred="True"
+   crs:SupportsOutputReferred="True"
+   crs:CameraModelRestriction=""
+   crs:Copyright=""
+   crs:ContactInfo=""
+   crs:Version="16.0"
+   crs:ProcessVersion="15.4"
+   crs:ConvertToGrayscale="True"
+   crs:Treatment="Black &amp; White"
+   crs:WhiteBalance="As Shot"
+   crs:Contrast2012="3"
+   crs:Blacks2012="-4"
+   crs:Whites2012="7"
+   crs:Clarity2012="-12"
+   crs:Texture="-8"
+   crs:Dehaze="0"
+   crs:GrayMixerRed="0"
+   crs:GrayMixerOrange="7"
+   crs:GrayMixerYellow="13"
+   crs:GrayMixerGreen="22"
+   crs:GrayMixerAqua="0"
+   crs:GrayMixerBlue="-4"
+   crs:GrayMixerPurple="-8"
+   crs:GrayMixerMagenta="-13"
+   crs:GrainAmount="14"
+   crs:GrainSize="19"
+   crs:GrainFrequency="62"
+   crs:PostCropVignetteAmount="0"
+   crs:ColorGradeShadowLum="0"
+   crs:SplitToningShadowHue="39"
+   crs:SplitToningShadowSaturation="11"
+   crs:SplitToningHighlightHue="41"
+   crs:SplitToningHighlightSaturation="13"
+   crs:SplitToningBalance="0"
+   crs:ColorGradeBlending="60">
+   <crs:Name>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Ritratto in luce di finestra</rdf:li>
+    </rdf:Alt>
+   </crs:Name>
+   <crs:Group>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Camera Oscura BN</rdf:li>
+    </rdf:Alt>
+   </crs:Group>
+   <crs:Description>
+    <rdf:Alt>
+     <rdf:li xml:lang="x-default">Incarnati chiari e morbidi, ombre aperte, nessuna durezza sulla pelle. Il filtro verde tiene le labbra dove devono stare.</rdf:li>
+    </rdf:Alt>
+   </crs:Description>
+   <crs:ToneCurvePV2012>
+    <rdf:Seq>
+     <rdf:li>0, 6</rdf:li>
+     <rdf:li>28, 31</rdf:li>
+     <rdf:li>57, 59</rdf:li>
+     <rdf:li>85, 88</rdf:li>
+     <rdf:li>113, 118</rdf:li>
+     <rdf:li>142, 149</rdf:li>
+     <rdf:li>170, 180</rdf:li>
+     <rdf:li>198, 208</rdf:li>
+     <rdf:li>227, 231</rdf:li>
+     <rdf:li>255, 250</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012>
+   <crs:ToneCurvePV2012Red>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Red>
+   <crs:ToneCurvePV2012Green>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Green>
+   <crs:ToneCurvePV2012Blue>
+    <rdf:Seq>
+     <rdf:li>0, 0</rdf:li>
+     <rdf:li>255, 255</rdf:li>
+    </rdf:Seq>
+   </crs:ToneCurvePV2012Blue>
+  </rdf:Description>
+ </rdf:RDF>
+</x:xmpmeta>

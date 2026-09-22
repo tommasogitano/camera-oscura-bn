@@ -1,0 +1,114 @@
+{
+  "versione": 1,
+  "nome": "Notturno urbano",
+  "pellicola": "notturno",
+  "note": "Lampioni, asfalto bagnato, neri profondi con grana viva: la citta dopo la pioggia.",
+  "conversione": {
+    "rosso": 44,
+    "giallo": 60,
+    "verde": 40,
+    "ciano": 58,
+    "blu": 30,
+    "magenta": 76,
+    "filtro": "nessuno",
+    "intensitaFiltro": 100,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 26,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 44,
+    "esaltaBianchi": 28,
+    "curva": [
+      [
+        0,
+        0
+      ],
+      [
+        32,
+        14
+      ],
+      [
+        64,
+        44
+      ],
+      [
+        128,
+        128
+      ],
+      [
+        192,
+        210
+      ],
+      [
+        255,
+        255
+      ]
+    ],
+    "chiarezza": 10,
+    "struttura": 0,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 58,
+    "dimensione": 1.7,
+    "ruvidita": 72,
+    "ombre": 96,
+    "mezzitoni": 100,
+    "luci": 44,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "nessuno",
+    "intensitaViraggio": 60,
+    "split": {
+      "ombreTinta": 215,
+      "ombreSat": 14,
+      "luciTinta": 44,
+      "luciSat": 6,
+      "bilanciamento": -10
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

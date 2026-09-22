@@ -1,0 +1,118 @@
+{
+  "versione": 1,
+  "nome": "Seta 100",
+  "pellicola": "acros100",
+  "note": "Grana quasi invisibile e una spalla lunghissima nelle alte luci: la scelta per il paesaggio in luce morbida e per la lunga posa.",
+  "conversione": {
+    "rosso": 38,
+    "giallo": 62,
+    "verde": 44,
+    "ciano": 62,
+    "blu": 18,
+    "magenta": 78,
+    "filtro": "nessuno",
+    "intensitaFiltro": 100,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 14,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 26,
+    "esaltaBianchi": 8,
+    "curva": [
+      [
+        0,
+        0
+      ],
+      [
+        24,
+        16
+      ],
+      [
+        64,
+        56
+      ],
+      [
+        128,
+        132
+      ],
+      [
+        192,
+        206
+      ],
+      [
+        232,
+        238
+      ],
+      [
+        255,
+        254
+      ]
+    ],
+    "chiarezza": 0,
+    "struttura": 0,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 8,
+    "dimensione": 0.72,
+    "ruvidita": 34,
+    "ombre": 40,
+    "mezzitoni": 100,
+    "luci": 30,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "nessuno",
+    "intensitaViraggio": 60,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

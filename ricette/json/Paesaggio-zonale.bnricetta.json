@@ -1,0 +1,118 @@
+{
+  "versione": 1,
+  "nome": "Paesaggio zonale",
+  "pellicola": "zonale",
+  "note": "Massima scala tonale: neri chiusi ma leggibili, bianchi trattenuti sotto la zona IX. Per stampa fine art.",
+  "conversione": {
+    "rosso": 40,
+    "giallo": 60,
+    "verde": 40,
+    "ciano": 60,
+    "blu": 20,
+    "magenta": 80,
+    "filtro": "giallo",
+    "intensitaFiltro": 70,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 10,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 28,
+    "esaltaBianchi": 14,
+    "curva": [
+      [
+        0,
+        0
+      ],
+      [
+        24,
+        14
+      ],
+      [
+        64,
+        56
+      ],
+      [
+        128,
+        130
+      ],
+      [
+        192,
+        202
+      ],
+      [
+        232,
+        234
+      ],
+      [
+        255,
+        248
+      ]
+    ],
+    "chiarezza": 14,
+    "struttura": 10,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 12,
+    "dimensione": 0.85,
+    "ruvidita": 40,
+    "ombre": 44,
+    "mezzitoni": 100,
+    "luci": 30,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "nessuno",
+    "intensitaViraggio": 60,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

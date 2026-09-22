@@ -1,0 +1,98 @@
+{
+  "versione": 1,
+  "nome": "Digitale neutro",
+  "pellicola": "neutra",
+  "note": "Conversione pulita, senza carattere: il punto di partenza per costruire una resa propria.",
+  "conversione": {
+    "rosso": 40,
+    "giallo": 60,
+    "verde": 40,
+    "ciano": 60,
+    "blu": 20,
+    "magenta": 80,
+    "filtro": "nessuno",
+    "intensitaFiltro": 100,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 0,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 0,
+    "esaltaBianchi": 0,
+    "curva": [
+      [
+        0,
+        0
+      ],
+      [
+        255,
+        255
+      ]
+    ],
+    "chiarezza": 0,
+    "struttura": 0,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": false,
+    "motore": "nativo",
+    "quantita": 0,
+    "dimensione": 1,
+    "ruvidita": 50,
+    "ombre": 70,
+    "mezzitoni": 100,
+    "luci": 45,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "nessuno",
+    "intensitaViraggio": 60,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Camera Oscura BN</title>
+  <link rel="stylesheet" href="styles/panel.css" />
+</head>
+<body>
+<div class="app">
+
+  <div class="intestazione">
+    <div class="riga titolo">
+      <sp-textfield id="nomeRicetta" class="cresce" placeholder="Nome della ricetta"></sp-textfield>
+      <sp-action-button id="btnLibreria" quiet title="Libreria delle ricette">≡</sp-action-button>
+    </div>
+    <div class="riga azioni">
+      <sp-button id="btnApplica" variant="cta">Sviluppa</sp-button>
+      <sp-action-button id="btnAnnulla" quiet title="Annulla">↶</sp-action-button>
+      <sp-action-button id="btnRipristina" quiet title="Ripristina">↷</sp-action-button>
+      <sp-action-button id="btnAzzera" quiet title="Azzera la ricetta">✕</sp-action-button>
+      <sp-checkbox id="chkLive" checked title="Aggiorna Photoshop a ogni modifica">live</sp-checkbox>
+    </div>
+    <div id="statoDoc" class="stato">Nessun documento aperto.</div>
+    <div id="statoSviluppo" class="sviluppo nascosto">
+      <div class="spia"></div>
+      <div id="testoSviluppo" class="cresce">Sviluppo in corso</div>
+      <div class="avvertenza">attendi, i comandi tornano attivi alla fine</div>
+    </div>
+  </div>
+
+  <div class="schede">
+    <sp-action-button class="scheda attiva" data-scheda="pellicola" quiet>Pellicola</sp-action-button>
+    <sp-action-button class="scheda" data-scheda="conversione" quiet>Canali</sp-action-button>
+    <sp-action-button class="scheda" data-scheda="tono" quiet>Tono</sp-action-button>
+    <sp-action-button class="scheda" data-scheda="zone" quiet>Zone</sp-action-button>
+    <sp-action-button class="scheda" data-scheda="grana" quiet>Grana</sp-action-button>
+    <sp-action-button class="scheda" data-scheda="finiture" quiet>Finiture</sp-action-button>
+    <sp-action-button class="scheda" data-scheda="esporta" quiet>Esporta</sp-action-button>
+  </div>
+
+  <div class="contenuto">
+
+    <!-- ============ PELLICOLA ============ -->
+    <section class="pannello" data-pannello="pellicola">
+      <div class="etichettaSezione">Emulsioni</div>
+      <div id="grigliaPellicole" class="griglia"></div>
+      <div class="etichettaSezione">Interpretazioni di stampa</div>
+      <div id="grigliaInterpretazioni" class="griglia"></div>
+      <div id="notaPellicola" class="nota"></div>
+      <div class="riga">
+        <sp-button id="btnProvini" variant="secondary">Provini a contatto</sp-button>
+        <sp-action-button id="btnProviniScelta" quiet title="Scegli quali ricette confrontare">…</sp-action-button>
+      </div>
+    </section>
+
+    <!-- ============ CONVERSIONE ============ -->
+    <section class="pannello nascosto" data-pannello="conversione">
+      <div class="etichettaSezione">Filtro davanti all'obiettivo</div>
+      <div class="riga">
+        <sp-dropdown id="ddFiltro" class="cresce"><sp-menu slot="options"></sp-menu></sp-dropdown>
+      </div>
+      <div class="riga cursore">
+        <label>Intensita</label>
+        <sp-slider min="0" max="100" step="1" data-p="conversione.intensitaFiltro"></sp-slider>
+        <span class="val"></span>
+      </div>
+      <div class="riga cursore">
+        <label>Tinta</label>
+        <sp-slider min="0" max="359" step="1" data-p="conversione.tintaFiltro"></sp-slider>
+        <span class="val"></span>
+      </div>
+      <canvas id="telaTinta" class="tela bassa" width="320" height="22"></canvas>
+      <div id="notaFiltro" class="nota"></div>
+
+      <div class="etichettaSezione">Miscelatore dei canali</div>
+      <div class="riga cursore"><label>Rosso</label><sp-slider min="-200" max="300" step="1" data-p="conversione.rosso"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Giallo</label><sp-slider min="-200" max="300" step="1" data-p="conversione.giallo"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Verde</label><sp-slider min="-200" max="300" step="1" data-p="conversione.verde"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Ciano</label><sp-slider min="-200" max="300" step="1" data-p="conversione.ciano"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Blu</label><sp-slider min="-200" max="300" step="1" data-p="conversione.blu"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Magenta</label><sp-slider min="-200" max="300" step="1" data-p="conversione.magenta"></sp-slider><span class="val"></span></div>
+      <div class="nota">Valori alti schiariscono il colore corrispondente. Il filtro colorato scrive sopra questi cursori: spostane uno e la ricetta diventa personalizzata.</div>
+    </section>
+
+    <!-- ============ TONO ============ -->
+    <section class="pannello nascosto" data-pannello="tono">
+      <div class="etichettaSezione">Curva tonale</div>
+      <canvas id="telaCurva" class="tela" width="320" height="320"></canvas>
+      <div class="riga azioniCurva">
+        <sp-action-button id="btnCurvaAzzera" quiet>Curva lineare</sp-action-button>
+        <sp-action-button id="btnCurvaS" quiet>S dolce</sp-action-button>
+        <sp-action-button id="btnCurvaPunto" quiet title="Elimina il punto selezionato">Togli punto</sp-action-button>
+      </div>
+
+      <div class="etichettaSezione">Luminosita</div>
+      <div class="riga cursore"><label>Generale</label><sp-slider min="-100" max="100" step="1" data-p="tono.luminosita"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Ombre</label><sp-slider min="-100" max="100" step="1" data-p="tono.lumOmbre"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Mezzitoni</label><sp-slider min="-100" max="100" step="1" data-p="tono.lumMezzitoni"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Alte luci</label><sp-slider min="-100" max="100" step="1" data-p="tono.lumLuci"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Dinamica</label><sp-slider min="-100" max="100" step="1" data-p="tono.luminositaDinamica"></sp-slider><span class="val"></span></div>
+      <div class="nota">La luminosita dinamica guarda il vicinato, non il singolo pixel: schiarisce le zone scure nel loro insieme e rispetta il modellato. Cambiandola il gruppo viene ricostruito.</div>
+
+      <div class="etichettaSezione">Punti di riferimento</div>
+      <div class="riga cursore"><label>Punto di nero</label><sp-slider min="0" max="120" step="1" data-p="tono.neroInput"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Punto di bianco</label><sp-slider min="140" max="255" step="1" data-p="tono.biancoInput"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Contrasto</label><sp-slider min="-100" max="100" step="1" data-p="tono.contrasto"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Contr. morbido</label><sp-slider min="-100" max="100" step="1" data-p="tono.contrastoMorbido"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Esalta i neri</label><sp-slider min="0" max="100" step="1" data-p="tono.esaltaNeri"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Esalta i bianchi</label><sp-slider min="0" max="100" step="1" data-p="tono.esaltaBianchi"></sp-slider><span class="val"></span></div>
+
+      <div class="etichettaSezione">Contrasto locale</div>
+      <div class="riga cursore"><label>Chiarezza</label><sp-slider min="-100" max="100" step="1" data-p="tono.chiarezza"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Struttura</label><sp-slider min="-100" max="100" step="1" data-p="tono.struttura"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Struttura fine</label><sp-slider min="-100" max="100" step="1" data-p="tono.strutturaFine"></sp-slider><span class="val"></span></div>
+      <div class="etichettaSezione">Struttura per fascia</div>
+      <div class="riga cursore"><label>Ombre</label><sp-slider min="-100" max="100" step="1" data-p="tono.strutturaOmbre"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Mezzitoni</label><sp-slider min="-100" max="100" step="1" data-p="tono.strutturaMezzitoni"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Alte luci</label><sp-slider min="-100" max="100" step="1" data-p="tono.strutturaLuci"></sp-slider><span class="val"></span></div>
+      <div class="nota">La struttura per fascia si somma a quella generale. Chiarezza e struttura creano livelli pixel calcolati sul visibile: dopo averle cambiate, il gruppo viene ricostruito.</div>
+
+      <div class="etichettaSezione">Protezione tonale</div>
+      <div class="riga cursore"><label>Ombre</label><sp-slider min="0" max="100" step="1" data-p="tono.protezioneOmbre"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Alte luci</label><sp-slider min="0" max="100" step="1" data-p="tono.protezioneLuci"></sp-slider><span class="val"></span></div>
+      <div class="nota">Riporta indietro le ombre e le luci che le regolazioni hanno spinto verso il nero pieno o il bianco bruciato.</div>
+    </section>
+
+    <!-- ============ ZONE ============ -->
+    <section class="pannello nascosto" data-pannello="zone">
+      <div class="riga">
+        <sp-checkbox id="chkZone">Sistema zonale attivo</sp-checkbox>
+      </div>
+      <div class="nota">Ogni cursore schiarisce o brucia una fascia della scala, come mano e cartoncino sotto l'ingranditore. Zona 0 e il nero pieno, Zona X il bianco carta.</div>
+      <div id="cursoriZone"></div>
+      <div class="riga cursore"><label>Ampiezza fasce</label><sp-slider min="15" max="100" step="1" data-p="zone.ampiezza"></sp-slider><span class="val"></span></div>
+      <div class="riga"><sp-action-button id="btnZoneAzzera" quiet>Azzera tutte le zone</sp-action-button></div>
+    </section>
+
+    <!-- ============ GRANA ============ -->
+    <section class="pannello nascosto" data-pannello="grana">
+      <div class="riga">
+        <sp-checkbox id="chkGrana">Grana attiva</sp-checkbox>
+        <sp-dropdown id="ddMotore" class="cresce">
+          <sp-menu slot="options">
+            <sp-menu-item value="nativo" selected>Motore nativo (filtri Photoshop)</sp-menu-item>
+            <sp-menu-item value="procedurale">Motore procedurale (calcolato)</sp-menu-item>
+          </sp-menu>
+        </sp-dropdown>
+      </div>
+      <div class="riga cursore"><label>Quantita</label><sp-slider min="0" max="100" step="1" data-p="grana.quantita"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Dimensione</label><sp-slider min="0.4" max="3" step="0.05" data-p="grana.dimensione"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Ruvidita</label><sp-slider min="0" max="100" step="1" data-p="grana.ruvidita"></sp-slider><span class="val"></span></div>
+      <div class="etichettaSezione">Distribuzione per fascia tonale</div>
+      <div class="riga cursore"><label>Ombre</label><sp-slider min="0" max="100" step="1" data-p="grana.ombre"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Mezzitoni</label><sp-slider min="0" max="100" step="1" data-p="grana.mezzitoni"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Alte luci</label><sp-slider min="0" max="100" step="1" data-p="grana.luci"></sp-slider><span class="val"></span></div>
+      <div class="riga">
+        <sp-button id="btnNuovoSeme" variant="secondary">Nuovo seme</sp-button>
+        <span id="semeCorrente" class="nota inline"></span>
+      </div>
+      <div class="nota">Il motore procedurale calcola il granulo pixel per pixel: piu lento, ma con dimensione e ruvidita realmente controllabili. Su file oltre i 42 Mpixel torna automaticamente al motore nativo.</div>
+    </section>
+
+    <!-- ============ FINITURE ============ -->
+    <section class="pannello nascosto" data-pannello="finiture">
+      <div class="etichettaSezione">Viraggio</div>
+      <div class="riga"><sp-dropdown id="ddViraggio" class="cresce"><sp-menu slot="options"></sp-menu></sp-dropdown></div>
+      <div class="riga cursore"><label>Intensita</label><sp-slider min="0" max="100" step="1" data-p="finiture.intensitaViraggio"></sp-slider><span class="val"></span></div>
+      <div id="notaViraggio" class="nota"></div>
+      <canvas id="telaScala" class="tela bassa" width="320" height="46"></canvas>
+
+      <div class="etichettaSezione">Split toning</div>
+      <div class="riga cursore"><label>Tinta ombre</label><sp-slider min="0" max="360" step="1" data-p="finiture.split.ombreTinta"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Saturazione ombre</label><sp-slider min="0" max="100" step="1" data-p="finiture.split.ombreSat"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Tinta luci</label><sp-slider min="0" max="360" step="1" data-p="finiture.split.luciTinta"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Saturazione luci</label><sp-slider min="0" max="100" step="1" data-p="finiture.split.luciSat"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Bilanciamento</label><sp-slider min="-100" max="100" step="1" data-p="finiture.split.bilanciamento"></sp-slider><span class="val"></span></div>
+
+      <div class="etichettaSezione">Vignettatura</div>
+      <div class="riga cursore"><label>Quantita</label><sp-slider min="-100" max="100" step="1" data-p="finiture.vignetta.quantita"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Morbidezza</label><sp-slider min="0" max="100" step="1" data-p="finiture.vignetta.morbidezza"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Estensione</label><sp-slider min="20" max="100" step="1" data-p="finiture.vignetta.centro"></sp-slider><span class="val"></span></div>
+
+      <div class="etichettaSezione">Bordo e cornice</div>
+      <div class="riga">
+        <sp-dropdown id="ddBordo" class="cresce">
+          <sp-menu slot="options">
+            <sp-menu-item value="nessuno" selected>Nessuno</sp-menu-item>
+            <sp-menu-item value="filetto">Filetto interno</sp-menu-item>
+            <sp-menu-item value="cornice">Cornice esterna</sp-menu-item>
+            <sp-menu-item value="passepartout">Passe-partout</sp-menu-item>
+          </sp-menu>
+        </sp-dropdown>
+      </div>
+      <div class="riga cursore"><label>Spessore %</label><sp-slider min="0.2" max="12" step="0.1" data-p="finiture.bordo.spessore"></sp-slider><span class="val"></span></div>
+      <div class="riga">
+        <sp-action-button id="btnBordoNero" quiet>Nero</sp-action-button>
+        <sp-action-button id="btnBordoBianco" quiet>Bianco</sp-action-button>
+        <sp-button id="btnApplicaBordo" variant="secondary">Applica bordo</sp-button>
+      </div>
+      <div class="nota">Cornice e passe-partout allargano il quadro del documento: si applicano su richiesta, non a ogni ritocco.</div>
+    </section>
+
+    <!-- ============ ESPORTA ============ -->
+    <section class="pannello nascosto" data-pannello="esporta">
+      <div class="etichettaSezione">Adobe Camera Raw e Lightroom</div>
+      <div class="riga">
+        <sp-button id="btnXmpSalva" variant="secondary">Salva preset .xmp</sp-button>
+        <sp-button id="btnXmpCartella" variant="secondary">Nella cartella preset</sp-button>
+      </div>
+      <div id="statoRaw" class="nota"></div>
+
+      <div class="etichettaSezione">LUT 3D</div>
+      <div class="riga">
+        <sp-dropdown id="ddLutDim" class="cresce">
+          <sp-menu slot="options">
+            <sp-menu-item value="17">17 punti (leggera)</sp-menu-item>
+            <sp-menu-item value="33" selected>33 punti (standard)</sp-menu-item>
+            <sp-menu-item value="65">65 punti (alta precisione)</sp-menu-item>
+          </sp-menu>
+        </sp-dropdown>
+        <sp-button id="btnLut" variant="secondary">Salva .cube</sp-button>
+      </div>
+      <div class="nota">La LUT contiene conversione, filtro, tono e viraggio. Grana, vignetta e interventi locali restano fuori: dipendono dalla posizione nel fotogramma.</div>
+
+      <div class="etichettaSezione">Ricetta</div>
+      <div class="riga">
+        <sp-button id="btnRicettaSalva" variant="secondary">Salva in libreria</sp-button>
+        <sp-button id="btnRicettaEsporta" variant="secondary">Esporta file</sp-button>
+        <sp-button id="btnRicettaImporta" variant="secondary">Importa</sp-button>
+      </div>
+
+      <div class="etichettaSezione">Lavorazione a lotti</div>
+      <div class="riga">
+        <sp-button id="btnLottoAperti" variant="secondary">Documenti aperti</sp-button>
+        <sp-button id="btnLottoCartella" variant="secondary">Cartella…</sp-button>
+      </div>
+      <div class="nota">Sulla cartella: apre ogni immagine, applica la ricetta, unifica ed esporta un JPEG alla massima qualita nella cartella di destinazione.</div>
+
+      <div class="etichettaSezione">Diagnostica</div>
+      <div class="riga">
+        <sp-action-button id="btnPulisciLog" quiet>Pulisci</sp-action-button>
+        <sp-action-button id="btnRimuoviGruppo" quiet>Rimuovi il gruppo BN</sp-action-button>
+      </div>
+      <div id="registro" class="registro"></div>
+    </section>
+
+  </div>
+
+  <!-- Finestra della libreria -->
+  <div id="velo" class="velo nascosto">
+    <div class="finestra">
+      <div class="etichettaSezione">Libreria delle ricette</div>
+      <div id="elencoLibreria" class="elenco"></div>
+      <div class="riga destra">
+        <sp-button id="btnChiudiLibreria" variant="secondary">Chiudi</sp-button>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/ui/entrypoints.js"></script>
+  <script src="src/core/util.js"></script>
+  <script src="src/core/curve.js"></script>
+  <script src="src/core/filtri.js"></script>
+  <script src="src/core/bn.js"></script>
+  <script src="src/core/viraggi.js"></script>
+  <script src="src/core/pellicole.js"></script>
+  <script src="src/core/state.js"></script>
+  <script src="src/core/lut.js"></script>
+  <script src="src/core/xmp.js"></script>
+  <script src="src/core/file.js"></script>
+  <script src="src/ui/log.js"></script>
+  <script src="src/ps/actions.js"></script>
+  <script src="src/ps/pipeline.js"></script>
+  <script src="src/ps/grana.js"></script>
+  <script src="src/ps/provini.js"></script>
+  <script src="src/ps/lotto.js"></script>
+  <script src="src/ui/curva.js"></script>
+  <script src="src/ui/main.js"></script>
+</div>
+</body>
+</html>

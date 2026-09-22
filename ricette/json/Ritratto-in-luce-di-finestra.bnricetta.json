@@ -1,0 +1,110 @@
+{
+  "versione": 1,
+  "nome": "Ritratto in luce di finestra",
+  "pellicola": "ritratto",
+  "note": "Incarnati chiari e morbidi, ombre aperte, nessuna durezza sulla pelle. Il filtro verde tiene le labbra dove devono stare.",
+  "conversione": {
+    "rosso": 52,
+    "giallo": 78,
+    "verde": 52,
+    "ciano": 56,
+    "blu": 20,
+    "magenta": 72,
+    "filtro": "gialloVerde",
+    "intensitaFiltro": 45,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 4,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 8,
+    "esaltaBianchi": 16,
+    "curva": [
+      [
+        0,
+        6
+      ],
+      [
+        48,
+        52
+      ],
+      [
+        128,
+        134
+      ],
+      [
+        200,
+        208
+      ],
+      [
+        255,
+        250
+      ]
+    ],
+    "chiarezza": -12,
+    "struttura": -8,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 14,
+    "dimensione": 0.9,
+    "ruvidita": 38,
+    "ombre": 40,
+    "mezzitoni": 90,
+    "luci": 26,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "seppiaLeggero",
+    "intensitaViraggio": 22,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

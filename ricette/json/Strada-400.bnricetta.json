@@ -1,0 +1,118 @@
+{
+  "versione": 1,
+  "nome": "Strada 400",
+  "pellicola": "trix400",
+  "note": "La pellicola del reportage: neri pieni, mezzitoni robusti, grana disegnata e ben visibile. Perdona l'esposizione approssimativa.",
+  "conversione": {
+    "rosso": 46,
+    "giallo": 66,
+    "verde": 40,
+    "ciano": 54,
+    "blu": 24,
+    "magenta": 84,
+    "filtro": "nessuno",
+    "intensitaFiltro": 100,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 14,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 22,
+    "esaltaBianchi": 10,
+    "curva": [
+      [
+        0,
+        0
+      ],
+      [
+        32,
+        26
+      ],
+      [
+        64,
+        58
+      ],
+      [
+        128,
+        132
+      ],
+      [
+        192,
+        204
+      ],
+      [
+        224,
+        232
+      ],
+      [
+        255,
+        252
+      ]
+    ],
+    "chiarezza": 0,
+    "struttura": 0,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 34,
+    "dimensione": 1.25,
+    "ruvidita": 62,
+    "ombre": 72,
+    "mezzitoni": 100,
+    "luci": 46,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "nessuno",
+    "intensitaViraggio": 60,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}

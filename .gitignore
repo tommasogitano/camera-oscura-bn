@@ -1,0 +1,6 @@
+# File di lavoro locali, non fanno parte del progetto
+_da-eliminare/
+prove/
+dist/
+*.bak
+strumenti/test-core.js.nuovi

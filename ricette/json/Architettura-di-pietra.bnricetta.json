@@ -1,0 +1,110 @@
+{
+  "versione": 1,
+  "nome": "Architettura di pietra",
+  "pellicola": "pietra",
+  "note": "Intonaco, tufo, granito: microcontrasto alto e cielo trattenuto dal filtro arancio.",
+  "conversione": {
+    "rosso": 42,
+    "giallo": 62,
+    "verde": 40,
+    "ciano": 58,
+    "blu": 20,
+    "magenta": 80,
+    "filtro": "arancio",
+    "intensitaFiltro": 75,
+    "tintaFiltro": 30
+  },
+  "tono": {
+    "neroInput": 0,
+    "biancoInput": 255,
+    "gamma": 1,
+    "luminosita": 0,
+    "lumOmbre": 0,
+    "lumMezzitoni": 0,
+    "lumLuci": 0,
+    "luminositaDinamica": 0,
+    "contrasto": 18,
+    "contrastoMorbido": 0,
+    "esaltaNeri": 24,
+    "esaltaBianchi": 12,
+    "curva": [
+      [
+        0,
+        0
+      ],
+      [
+        32,
+        22
+      ],
+      [
+        128,
+        132
+      ],
+      [
+        192,
+        204
+      ],
+      [
+        255,
+        252
+      ]
+    ],
+    "chiarezza": 26,
+    "struttura": 22,
+    "strutturaOmbre": 0,
+    "strutturaMezzitoni": 0,
+    "strutturaLuci": 0,
+    "strutturaFine": 0,
+    "protezioneOmbre": 0,
+    "protezioneLuci": 0
+  },
+  "zone": {
+    "attivo": false,
+    "valori": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "ampiezza": 55
+  },
+  "grana": {
+    "attiva": true,
+    "motore": "nativo",
+    "quantita": 16,
+    "dimensione": 0.9,
+    "ruvidita": 48,
+    "ombre": 50,
+    "mezzitoni": 100,
+    "luci": 34,
+    "seme": 2317
+  },
+  "finiture": {
+    "viraggio": "nessuno",
+    "intensitaViraggio": 60,
+    "split": {
+      "ombreTinta": 210,
+      "ombreSat": 0,
+      "luciTinta": 45,
+      "luciSat": 0,
+      "bilanciamento": 0
+    },
+    "vignetta": {
+      "quantita": 0,
+      "morbidezza": 60,
+      "centro": 50
+    },
+    "bordo": {
+      "tipo": "nessuno",
+      "spessore": 2,
+      "colore": "#000000"
+    }
+  }
+}
