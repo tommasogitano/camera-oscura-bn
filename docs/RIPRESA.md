@@ -13,16 +13,15 @@ Aggiornato il 25 settembre 2026, mattina.
 
 ## Dove siamo
 
-- Versione 1.1.0 nel manifest, commit e tag `v1.1.0` sul repository pubblico https://github.com/tommasogitano/camera-oscura-bn (GPL 3.0). Pacchetto `dist/CameraOscuraBN-1.1.0.ccx`.
+- Versione 1.1.0 nel manifest, commit e tag `v1.1.0` sul repository pubblico https://github.com/tommasogitano/camera-oscura-bn (GPL 3.0). Release 1.1.0 pubblicata il 25 settembre 2026 con `CameraOscuraBN-1.1.0.ccx` allegato (https://github.com/tommasogitano/camera-oscura-bn/releases/tag/v1.1.0).
 - Blocchi 0, 1 e 2 del piano Silver Efex collaudati; maschera radiale fuori piano collaudata.
 - Il plugin sul computer di Tommaso e installato dal .ccx 1.1.0.
 
 ## Cosa resta
 
-1. Release 1.1.0 su GitHub con il .ccx allegato (se non gia fatta).
-2. Link da tommasoautore.it a https://github.com/tommasogitano/camera-oscura-bn/releases/latest.
-3. Facoltativo: Marketplace Adobe gratuito; prove su Mac e Photoshop 2025; versione inglese.
-4. Sviluppo: blocchi 3-7 del piano Silver Efex come aggiornamenti (nuova versione nel manifest, nuovo tag e nuova release).
+1. Link da tommasoautore.it a https://github.com/tommasogitano/camera-oscura-bn/releases/latest.
+2. Facoltativo: Marketplace Adobe gratuito; prove su Mac e Photoshop 2025; versione inglese.
+3. Sviluppo: blocchi 3-7 del piano Silver Efex come aggiornamenti (nuova versione nel manifest, nuovo tag e nuova release).
 
 ## Ciclo di lavoro
 
