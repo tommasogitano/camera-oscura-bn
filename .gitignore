@@ -4,3 +4,4 @@ prove/
 dist/
 *.bak
 strumenti/test-core.js.nuovi
+Claude outputs/ 

@@ -50,6 +50,34 @@ nelle ombre e nei mezzitoni, molto meno nel bianco.
 vignettatura, bordo. La striscia sotto il viraggio mostra la scala dei grigi
 risultante, viraggio compreso.
 
+## Maschera radiale
+
+Scheda "Locale". Serve a fare quello che in camera oscura si fa con le mani
+sotto l'ingranditore: schiarire il soggetto e bruciare i bordi, in modo
+diverso dentro e fuori da un'ellisse.
+
+1. Spunta "Attiva la maschera radiale" (si attiva da sola anche toccando uno
+   qualsiasi dei suoi cursori).
+2. Sulla tela, trascina il quadratino centrale sul soggetto (oppure fai clic
+   dove vuoi il centro), i due quadratini sul bordo per larghezza e altezza,
+   il quadratino vuoto in alto per ruotare. "Cerchio" rende uguali i due assi
+   in pixel.
+   Oppure lavora direttamente sulla foto: "Centro sulla foto" attiva il
+   campionatore colore e il primo clic sull'immagine diventa il centro
+   dell'ellisse (il punto campione viene tolto subito e torna lo strumento di
+   prima; Photoshop puo aprire il pannello Info, che si chiude con F8).
+   "Dalla selezione" prende centro, larghezza e altezza da una selezione
+   tracciata sulla foto, per esempio con la Selezione ellittica (tasto M).
+3. "Sfumatura" decide quanto e morbido il passaggio: a zero il bordo e netto,
+   a cento la transizione occupa quasi tutto il semiasse minore. Le linee
+   sottili sulla tela segnano dove comincia e dove finisce.
+4. Regola dentro e fuori: luminosita, contrasto, struttura. "Scambia lati"
+   inverte le due serie di valori.
+
+La maschera vive nel gruppo come livelli `BN · Radiale`: si possono ritoccare
+a mano, pennello sulla maschera compreso, finche non si risviluppa. Non entra
+nella LUT ne nel preset .xmp, perche dipende dalla posizione nel fotogramma.
+
 ## Come lavorare sui RAW
 
 Photoshop non applica una regolazione al negativo digitale: il RAW passa da

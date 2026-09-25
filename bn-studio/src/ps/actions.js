@@ -380,6 +380,88 @@
   }
 
   /* Carica la luminosita del composito come selezione (equivale a Ctrl+Alt+2). */
+  /* ------------------------------------------------------------------ */
+  /* Punti presi sulla foto (maschera radiale)                           */
+  /* ------------------------------------------------------------------ */
+
+  /* Strumento attivo, per poterlo rimettere dopo. Null se non leggibile. */
+  async function strumentoAttivo() {
+    try {
+      if (app.currentTool && app.currentTool.id) return app.currentTool.id;
+    } catch (e) { /* si prova con batchPlay */ }
+    try {
+      var r = await azione.batchPlay([{
+        _obj: "get",
+        _target: [{ _property: "tool" }, { _ref: "application", _enum: "ordinal", _value: "targetEnum" }]
+      }], { synchronousExecution: false });
+      var t = r && r[0] && r[0].tool;
+      if (!t) return null;
+      if (typeof t === "string") return t;
+      return t._value || t._enum || null;
+    } catch (e) { return null; }
+  }
+
+  async function selezionaStrumento(nome) {
+    if (!nome) return;
+    var comando = { _obj: "select", _target: [{ _ref: nome }] };
+    try {
+      await azione.batchPlay([comando], { synchronousExecution: false });
+    } catch (e) {
+      await core.executeAsModal(function () {
+        return azione.batchPlay([comando], { synchronousExecution: false, modalBehavior: "execute" });
+      }, { commandName: "Camera Oscura BN: strumento" });
+    }
+  }
+
+  /* Punti del campionatore colore presenti nel documento, in pixel. */
+  function puntiCampionatore() {
+    var doc = documento();
+    if (!doc || !doc.colorSamplers) return [];
+    var elenco = [];
+    for (var i = 0; i < doc.colorSamplers.length; i++) {
+      var p = doc.colorSamplers[i].position;
+      if (p) elenco.push([Number(p.x), Number(p.y)]);
+    }
+    return elenco;
+  }
+
+  async function rimuoviCampionatori() {
+    var doc = documento();
+    if (!doc || !doc.colorSamplers || !doc.colorSamplers.length) return;
+    await core.executeAsModal(async function () {
+      try { doc.colorSamplers.removeAll(); }
+      catch (e) {
+        for (var i = doc.colorSamplers.length - 1; i >= 0; i--) {
+          try { doc.colorSamplers[i].remove(); } catch (e2) {}
+        }
+      }
+    }, { commandName: "Camera Oscura BN: punto" });
+  }
+
+  /* Rettangolo che contiene la selezione attiva, in pixel; null se non c'e. */
+  async function limitiSelezione() {
+    var doc = documento();
+    if (!doc) return null;
+    try {
+      var r = await azione.batchPlay([{
+        _obj: "get",
+        _target: [{ _property: "selection" }, { _ref: "document", _enum: "ordinal", _value: "targetEnum" }]
+      }], { synchronousExecution: false });
+      var sel = r && r[0] && r[0].selection;
+      if (!sel || sel.left == null) return null;
+      var risoluzione = Number(doc.resolution) || 72;
+      var px = function (v) {
+        if (v == null) return 0;
+        if (typeof v === "number") return v;
+        if (v._unit === "distanceUnit") return v._value * risoluzione / 72;
+        return v._value;
+      };
+      var b = { sinistra: px(sel.left), alto: px(sel.top), destra: px(sel.right), basso: px(sel.bottom) };
+      if (b.destra - b.sinistra < 2 || b.basso - b.alto < 2) return null;
+      return b;
+    } catch (e) { return null; }
+  }
+
   async function selezionaLuminosita() {
     return esegui({
       _obj: "set",
@@ -460,6 +542,68 @@
     }, "riempimento");
   }
 
+  /* Riempie il canale o il livello attivo di nero, bianco o grigio 50%
+     (serve sulle maschere, dove un colore RGB non ha senso). */
+  async function riempiNeutro(quale) {
+    return esegui({
+      _obj: "fill",
+      using: { _enum: "fillContents", _value: quale === "bianco" ? "white" : quale === "grigio" ? "gray" : "black" },
+      opacity: { _unit: "percentUnit", _value: 100 },
+      mode: { _enum: "blendMode", _value: "normal" }
+    }, "riempimento " + quale);
+  }
+
+  /* Selezione ellittica inscritta nel rettangolo dato, in pixel. */
+  async function selezioneEllittica(sinistra, alto, destra, basso) {
+    return esegui({
+      _obj: "set",
+      _target: [{ _ref: "channel", _property: "selection" }],
+      to: {
+        _obj: "ellipse",
+        top: { _unit: "pixelsUnit", _value: Number(alto.toFixed(2)) },
+        left: { _unit: "pixelsUnit", _value: Number(sinistra.toFixed(2)) },
+        bottom: { _unit: "pixelsUnit", _value: Number(basso.toFixed(2)) },
+        right: { _unit: "pixelsUnit", _value: Number(destra.toFixed(2)) }
+      },
+      antiAlias: true
+    }, "selezione ellittica");
+  }
+
+  /* Selezione poligonale da una lista di punti [x, y] in pixel. */
+  async function selezionePoligono(punti) {
+    return esegui({
+      _obj: "set",
+      _target: [{ _ref: "channel", _property: "selection" }],
+      to: {
+        _obj: "polygon",
+        points: punti.map(function (p) {
+          return {
+            _obj: "paint",
+            horizontal: { _unit: "pixelsUnit", _value: Number(p[0].toFixed(2)) },
+            vertical: { _unit: "pixelsUnit", _value: Number(p[1].toFixed(2)) }
+          };
+        })
+      },
+      antiAlias: true
+    }, "selezione poligonale");
+  }
+
+  /* Ruota la selezione attiva attorno al suo centro (Trasforma selezione).
+     Angolo in gradi, positivo in senso orario. */
+  async function ruotaSelezione(gradi) {
+    return esegui({
+      _obj: "transform",
+      _target: [{ _ref: "channel", _property: "selection" }],
+      freeTransformCenterState: { _enum: "quadCenterState", _value: "QCSAverage" },
+      offset: {
+        _obj: "offset",
+        horizontal: { _unit: "pixelsUnit", _value: 0 },
+        vertical: { _unit: "pixelsUnit", _value: 0 }
+      },
+      angle: { _unit: "angleUnit", _value: Number(gradi.toFixed(2)) }
+    }, "ruota selezione");
+  }
+
   async function dimensioneQuadro(larghezza, altezza, relativo) {
     var d = {
       _obj: "canvasSize",
@@ -515,8 +659,17 @@
     selezionaCompositoRGB: selezionaCompositoRGB,
     sfumaturaRadiale: sfumaturaRadiale,
     riempi: riempi,
+    riempiNeutro: riempiNeutro,
+    selezioneEllittica: selezioneEllittica,
+    ruotaSelezione: ruotaSelezione,
+    selezionePoligono: selezionePoligono,
     dimensioneQuadro: dimensioneQuadro,
     convertiInOggettoAvanzato: convertiInOggettoAvanzato,
-    coloreRGB: coloreRGB
+    coloreRGB: coloreRGB,
+    strumentoAttivo: strumentoAttivo,
+    selezionaStrumento: selezionaStrumento,
+    puntiCampionatore: puntiCampionatore,
+    rimuoviCampionatori: rimuoviCampionatori,
+    limitiSelezione: limitiSelezione
   };
 })(this);

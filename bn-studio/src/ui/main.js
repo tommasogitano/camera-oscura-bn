@@ -95,10 +95,20 @@
 
   function occupato() { return lavoriAperti > 0; }
 
+  /* Chiave di forma della maschera radiale, se il cambiamento e tale. */
+  function formaRadiale(c) {
+    var parti = String(c || "").split(".");
+    return parti[0] === "locale" && parti[1] === "radiale" && parti.length === 3 &&
+      (BN.radiale.soloForma(parti[2]) || parti[2] === "forma");
+  }
+
   function unisci(attesa, nuovo) {
     if (!attesa) return { cambiamento: nuovo };
-    if (attesa.cambiamento !== nuovo) return { cambiamento: undefined };
-    return attesa;
+    if (attesa.cambiamento === nuovo) return attesa;
+    /* Spostare e ridimensionare l'ellisse tocca chiavi diverse, ma a tutte
+       basta ridisegnare le maschere: non serve ricostruire la pila. */
+    if (formaRadiale(attesa.cambiamento) && formaRadiale(nuovo)) return { cambiamento: "locale.radiale.forma" };
+    return { cambiamento: undefined };
   }
 
   async function applicaOra(cambiamento) {
@@ -259,6 +269,10 @@
     if (percorso === "conversione.tintaFiltro" && BN.stato.leggi("conversione.filtro") !== "tinta") {
       BN.stato.imposta("conversione.filtro", "tinta", { senzaCronologia: true });
     }
+    /* Toccare la maschera radiale vuol dire volerla attiva. */
+    if (percorso.indexOf("locale.radiale.") === 0 && !BN.stato.leggi("locale.radiale.attiva")) {
+      BN.stato.imposta("locale.radiale.attiva", true, { senzaCronologia: true });
+    }
     BN.stato.imposta(percorso, valore);
   }
 
@@ -335,6 +349,7 @@
     function ridisegna() {
       if (nome === "tono" || nome === "finiture") BN.curvaUI.disegna();
       if (nome === "conversione") disegnaTinta();
+      if (nome === "locale") BN.radialeUI.disegna();
     }
     ridisegna();
     setTimeout(ridisegna, 60);
@@ -387,6 +402,7 @@
 
       var chkG = $("chkGrana"); if (chkG) chkG.checked = !!r.grana.attiva;
       var chkZ = $("chkZone"); if (chkZ) chkZ.checked = !!r.zone.attivo;
+      var chkR = $("chkRadiale"); if (chkR) chkR.checked = !!(r.locale && r.locale.radiale && r.locale.radiale.attiva);
 
       var seme = $("semeCorrente");
       if (seme) seme.textContent = "seme " + r.grana.seme;
@@ -413,6 +429,7 @@
       if (nv) nv.textContent = v.nota;
 
       BN.curvaUI.disegna();
+      BN.radialeUI.disegna();
     } finally {
       aggiornandoUI = false;
     }
@@ -523,6 +540,13 @@
     }
     var gruppo = null;
     try { gruppo = BN.pipeline.gruppoEsistente(); } catch (e) {}
+    /* La tela della maschera radiale mostra il fotogramma del documento:
+       se cambia formato (altro documento, ritaglio), la si ridisegna. */
+    var formato = Math.round(doc.width) + "x" + Math.round(doc.height);
+    if (formato !== aggiornaStatoDocumento.formato) {
+      aggiornaStatoDocumento.formato = formato;
+      try { BN.radialeUI.disegna(); } catch (e) {}
+    }
     el.textContent = doc.name + " · " + Math.round(doc.width) + "×" + Math.round(doc.height) +
       " px · " + (gruppo ? "gruppo BN presente" : "nessun gruppo BN");
     if (gruppo) pipelineAttiva = true;
@@ -575,6 +599,88 @@
       BN.stato.imposta("zone.attivo", !!e.target.checked);
     });
 
+    $("chkRadiale").addEventListener("change", function (e) {
+      if (aggiornandoUI) return;
+      BN.stato.imposta("locale.radiale.attiva", !!e.target.checked);
+    });
+    $("btnRadialeCentro").addEventListener("click", function () {
+      BN.stato.imposta("locale.radiale.x", 50);
+      BN.stato.imposta("locale.radiale.y", 50, { senzaCronologia: true });
+    });
+    $("btnRadialeCerchio").addEventListener("click", function () {
+      /* Stesso semiasse in pixel: l'altezza si ricava dalla larghezza. */
+      var f = BN.radialeUI.formato();
+      var larghezza = BN.stato.leggi("locale.radiale.larghezza") || 60;
+      BN.stato.imposta("locale.radiale.altezza", U.clamp(Math.round(larghezza * f.W / f.H * 10) / 10, 2, 300));
+    });
+    $("btnRadialeScambia").addEventListener("click", function () {
+      var dentro = U.clone(BN.stato.leggi("locale.radiale.dentro") || {});
+      var fuori = U.clone(BN.stato.leggi("locale.radiale.fuori") || {});
+      BN.stato.imposta("locale.radiale.dentro", fuori);
+      BN.stato.imposta("locale.radiale.fuori", dentro, { senzaCronologia: true });
+    });
+    /* Centro scelto con un clic sulla foto: si attiva il campionatore
+       colore di Photoshop e si aspetta il primo punto nuovo. */
+    var attesaFoto = null;
+    function chiudiAttesaFoto(punto) {
+      if (!attesaFoto) return;
+      var a = attesaFoto;
+      attesaFoto = null;
+      clearInterval(a.timer);
+      $("btnRadialeFoto").textContent = "Centro sulla foto";
+      var nota = $("notaRadialeFoto"); if (nota) nota.classList.add("nascosto");
+      (async function () {
+        try { await BN.ps.rimuoviCampionatori(); } catch (e) {}
+        try { await BN.ps.selezionaStrumento(a.strumento || "moveTool"); } catch (e) {}
+        if (!punto) return;
+        var doc = BN.ps.documento();
+        if (!doc) return;
+        var W = Number(doc.width), H = Number(doc.height);
+        BN.stato.imposta("locale.radiale.x", U.clamp(Math.round(punto[0] / W * 1000) / 10, 0, 100));
+        BN.stato.imposta("locale.radiale.y", U.clamp(Math.round(punto[1] / H * 1000) / 10, 0, 100), { senzaCronologia: true });
+        BN.log.info("Centro della maschera radiale preso sulla foto.");
+      })();
+    }
+    $("btnRadialeFoto").addEventListener("click", async function () {
+      if (attesaFoto) { chiudiAttesaFoto(null); return; }
+      if (!BN.ps.documento()) { BN.log.avviso("Apri prima una foto."); return; }
+      var strumento = await BN.ps.strumentoAttivo();
+      var giaPresenti = 0;
+      try { giaPresenti = BN.ps.puntiCampionatore().length; } catch (e) {}
+      try { await BN.ps.selezionaStrumento("colorSamplerTool"); }
+      catch (e) { BN.log.avviso("Non riesco ad attivare il campionatore colore: sceglilo a mano (tasto I) e clicca sulla foto."); }
+      attesaFoto = { strumento: strumento, inizio: Date.now(), timer: null };
+      $("btnRadialeFoto").textContent = "Annulla";
+      var nota = $("notaRadialeFoto"); if (nota) nota.classList.remove("nascosto");
+      attesaFoto.timer = setInterval(function () {
+        if (!attesaFoto) return;
+        if (Date.now() - attesaFoto.inizio > 120000) { chiudiAttesaFoto(null); return; }
+        var punti = [];
+        try { punti = BN.ps.puntiCampionatore(); } catch (e) { punti = []; }
+        if (punti.length > giaPresenti) chiudiAttesaFoto(punti[punti.length - 1]);
+        else giaPresenti = Math.min(giaPresenti, punti.length);
+      }, 300);
+    });
+    $("btnRadialeSelezione").addEventListener("click", async function () {
+      var doc = BN.ps.documento();
+      if (!doc) { BN.log.avviso("Apri prima una foto."); return; }
+      var b = await BN.ps.limitiSelezione();
+      if (!b) { BN.log.avviso("Nessuna selezione: traccia sulla foto un'ellisse con lo strumento Selezione ellittica (tasto M), poi premi di nuovo."); return; }
+      var W = Number(doc.width), H = Number(doc.height);
+      var r1 = function (v) { return Math.round(v * 10) / 10; };
+      BN.stato.imposta("locale.radiale.x", U.clamp(r1((b.sinistra + b.destra) / 2 / W * 100), 0, 100));
+      BN.stato.imposta("locale.radiale.y", U.clamp(r1((b.alto + b.basso) / 2 / H * 100), 0, 100), { senzaCronologia: true });
+      BN.stato.imposta("locale.radiale.larghezza", U.clamp(r1((b.destra - b.sinistra) / W * 100), 5, 200), { senzaCronologia: true });
+      BN.stato.imposta("locale.radiale.altezza", U.clamp(r1((b.basso - b.alto) / H * 100), 5, 200), { senzaCronologia: true });
+      BN.stato.imposta("locale.radiale.rotazione", 0, { senzaCronologia: true });
+      try { await BN.ps.modale(function () { return BN.ps.deseleziona(); }, "Camera Oscura BN: selezione"); } catch (e) {}
+      BN.log.info("Ellisse presa dalla selezione.");
+    });
+    $("btnRadialeAzzera").addEventListener("click", function () {
+      var nuova = U.clone(BN.stato.base.locale.radiale);
+      nuova.attiva = !!BN.stato.leggi("locale.radiale.attiva");
+      BN.stato.imposta("locale.radiale", nuova);
+    });
     $("btnZoneAzzera").addEventListener("click", function () {
       BN.stato.imposta("zone.valori", [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
     });
@@ -694,6 +800,7 @@
     agganciaTuttiICursori();
     agganciaPulsanti();
     BN.curvaUI.inizializza();
+    BN.radialeUI.inizializza();
 
     BN.stato.osserva(function (ricetta, motivo) {
       sincronizza();

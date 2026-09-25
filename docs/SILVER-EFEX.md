@@ -15,7 +15,7 @@ Silver Efex organizza il lavoro in cinque famiglie. Ecco come stiamo.
 |---|---|
 | Preset e browser | Parziale: la libreria esiste, mancano miniature e categorie |
 | Regolazioni globali | Completo nel codice, da collaudare |
-| Regolazioni selettive (punti di controllo) | Assente |
+| Regolazioni selettive (punti di controllo) | Parziale: maschera radiale nel codice (25 settembre 2026), da collaudare; punti di controllo assenti |
 | Filtro colore | Completo nel codice, da collaudare |
 | Tipo di pellicola | Buono: tredici emulsioni contro diciotto |
 | Finiture | Parziale: viraggio e vignetta grossolani, bordi bruciati assenti |
@@ -202,6 +202,47 @@ browser dei preset e la superficie su cui si posano i punti di controllo.
 La cronologia navigabile e quasi gratis: lo store tiene gia sessanta stati.
 
 Tocca: nuovo `ui/anteprima.js`, nuovo `core/rendering.js`, `ui/main.js`.
+
+### Fuori piano: maschera radiale (25 settembre 2026)
+
+Aggiunta su richiesta di Tommaso, ispirata alla maschera radiale di Silver
+Efex. Scheda "Locale" del pannello. Un'ellisse regolabile in tutto: centro,
+larghezza, altezza, rotazione, sfumatura. Dentro e fuori ricevono ciascuno
+luminosita, contrasto e struttura indipendenti.
+
+In Photoshop: fino a quattro livelli nel gruppo, tutti con nome che comincia
+per `BN · Radiale` (struttura dentro e fuori come accentua passaggio in luce
+soffusa, tono dentro e fuori come livelli Curve). Ogni maschera nasce da una
+selezione ellittica, ruotata con Trasforma selezione, riempita e sfocata con
+la gaussiana (oltre i 1000 px la sfocatura si ripete, perche il filtro non va
+oltre). Spostare o deformare l'ellisse ridisegna solo le maschere; cambiare
+luminosita, contrasto o intensita della struttura aggiorna i livelli
+esistenti; aggiungere o togliere un lato, o invertire il verso della
+struttura, ricostruisce la pila.
+
+La tela nel pannello mostra il fotogramma del documento aperto con il peso
+della maschera (calcolato in `core/radiale.js` con la stessa sfocatura
+gaussiana, approssimata con la funzione di errore) e quattro maniglie.
+
+Collaudata in Photoshop 27.10 il 25 settembre 2026 su `prove/DJI_0245.DNG`:
+maschera ellittica sfumata creata, dentro e fuori applicati dal vivo
+(struttura dentro +47 e luminosita fuori -100 sulla nuvola), spostamento
+dell'ellisse con aggiornamento leggero delle sole maschere.
+
+Aggiunto lo stesso giorno, su richiesta di Tommaso, il centro scelto sulla
+foto: "Centro sulla foto" attiva il campionatore colore (`colorSamplerTool`),
+il pannello controlla ogni 300 ms `document.colorSamplers`, prende il primo
+punto nuovo, lo cancella e rimette lo strumento di prima (`app.currentTool`).
+"Dalla selezione" legge i limiti della selezione attiva (batchPlay `get`
+della proprieta `selection`), li trasforma in centro e semiassi e deseleziona.
+Collaudati entrambi.
+
+Tocca: nuovo `core/radiale.js`, nuovo `ui/radiale.js`, `core/state.js`,
+`ps/actions.js`, `ps/pipeline.js`, `ui/main.js`, `index.html`, `styles/panel.css`,
+`strumenti/test-core.js` (cinque verifiche nuove).
+
+Quando arriveranno i punti di controllo (blocco 7), vivranno nella stessa
+scheda "Locale".
 
 ### Blocco 7. Punti di controllo
 

@@ -72,6 +72,21 @@
       split: { ombreTinta: 210, ombreSat: 0, luciTinta: 45, luciSat: 0, bilanciamento: 0 },
       vignetta: { quantita: 0, morbidezza: 60, centro: 50 },
       bordo: { tipo: "nessuno", spessore: 2, colore: "#000000" }
+    },
+
+    locale: {
+      /* Maschera radiale: un'ellisse regolabile con interventi separati
+         dentro e fuori. Vedi src/core/radiale.js. */
+      radiale: {
+        attiva: false,
+        x: 50, y: 50,            // centro, % del fotogramma
+        larghezza: 60,           // semiassi, % di meta lato
+        altezza: 60,
+        rotazione: 0,            // gradi
+        sfumatura: 50,           // 0..100
+        dentro: { luminosita: 0, contrasto: 0, struttura: 0 },
+        fuori: { luminosita: 0, contrasto: 0, struttura: 0 }
+      }
     }
   };
 
@@ -107,8 +122,10 @@
       nodo = nodo[parti[i]];
     }
     nodo[parti[parti.length - 1]] = valore;
-    if (percorso.indexOf("pellicola") !== 0 && percorso !== "nome" && percorso !== "note") {
-      // qualunque ritocco manuale stacca la ricetta dal preset di pellicola
+    if (percorso.indexOf("pellicola") !== 0 && percorso.indexOf("locale") !== 0 &&
+        percorso !== "nome" && percorso !== "note") {
+      // gli interventi locali dipendono dalla singola foto, non dalla pellicola;
+      // qualunque altro ritocco manuale stacca la ricetta dal preset di pellicola
       if (stato.ricetta.pellicola !== "personalizzata" && !opzioni.mantieniPellicola) {
         stato.ricetta.pellicola = "personalizzata";
       }

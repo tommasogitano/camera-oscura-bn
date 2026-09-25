@@ -226,3 +226,6 @@ html, body {
   margin-left: 6px;
 }
 .app.occupato .contenuto { opacity: 0.55; }
+
+/* Tela della maschera radiale: l'altezza segue il rapporto 320×214. */
+.tela.radiale { height: 214px; }

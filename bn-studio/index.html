@@ -33,6 +33,7 @@
     <sp-action-button class="scheda" data-scheda="conversione" quiet>Canali</sp-action-button>
     <sp-action-button class="scheda" data-scheda="tono" quiet>Tono</sp-action-button>
     <sp-action-button class="scheda" data-scheda="zone" quiet>Zone</sp-action-button>
+    <sp-action-button class="scheda" data-scheda="locale" quiet>Locale</sp-action-button>
     <sp-action-button class="scheda" data-scheda="grana" quiet>Grana</sp-action-button>
     <sp-action-button class="scheda" data-scheda="finiture" quiet>Finiture</sp-action-button>
     <sp-action-button class="scheda" data-scheda="esporta" quiet>Esporta</sp-action-button>
@@ -133,6 +134,47 @@
       <div id="cursoriZone"></div>
       <div class="riga cursore"><label>Ampiezza fasce</label><sp-slider min="15" max="100" step="1" data-p="zone.ampiezza"></sp-slider><span class="val"></span></div>
       <div class="riga"><sp-action-button id="btnZoneAzzera" quiet>Azzera tutte le zone</sp-action-button></div>
+    </section>
+
+    <!-- ============ LOCALE ============ -->
+    <section class="pannello nascosto" data-pannello="locale">
+      <div class="etichettaSezione">Maschera radiale</div>
+      <div class="riga">
+        <sp-checkbox id="chkRadiale">Attiva la maschera radiale</sp-checkbox>
+      </div>
+      <canvas id="telaRadiale" class="tela radiale" width="320" height="214"></canvas>
+      <div class="riga azioniCurva">
+        <sp-action-button id="btnRadialeCentro" quiet title="Riporta l'ellisse al centro del fotogramma">Al centro</sp-action-button>
+        <sp-action-button id="btnRadialeCerchio" quiet title="Stessa misura in pixel sui due assi">Cerchio</sp-action-button>
+        <sp-action-button id="btnRadialeScambia" quiet title="Scambia i valori di dentro e fuori">Scambia lati</sp-action-button>
+        <sp-action-button id="btnRadialeAzzera" quiet title="Ellisse e regolazioni ai valori iniziali">Azzera</sp-action-button>
+      </div>
+      <div class="riga azioniCurva">
+        <sp-action-button id="btnRadialeFoto" quiet title="Scegli il centro con un clic sulla foto in Photoshop">Centro sulla foto</sp-action-button>
+        <sp-action-button id="btnRadialeSelezione" quiet title="Usa come ellisse la selezione tracciata sulla foto">Dalla selezione</sp-action-button>
+      </div>
+      <div id="notaRadialeFoto" class="nota nascosto">Clicca sulla foto nel punto che vuoi al centro dell'ellisse. Per annullare, premi di nuovo "Annulla".</div>
+      <div class="nota">Sulla foto: "Centro sulla foto" attiva il campionatore colore e il primo clic sull'immagine diventa il centro; "Dalla selezione" prende centro e misure da una selezione (per esempio ellittica) tracciata in Photoshop.</div>
+      <div class="nota">Trascina il quadratino centrale per spostare l'ellisse, i due quadratini sul bordo per allungarla o allargarla, il quadratino vuoto in alto per ruotarla. Un clic altrove sul fotogramma porta li il centro. Le zone chiare della tela sono quelle che ricevono le regolazioni di dentro.</div>
+
+      <div class="etichettaSezione">Forma</div>
+      <div class="riga cursore"><label>Centro orizz. %</label><sp-slider min="0" max="100" step="1" data-p="locale.radiale.x"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Centro vert. %</label><sp-slider min="0" max="100" step="1" data-p="locale.radiale.y"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Larghezza %</label><sp-slider min="5" max="200" step="1" data-p="locale.radiale.larghezza"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Altezza %</label><sp-slider min="5" max="200" step="1" data-p="locale.radiale.altezza"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Rotazione °</label><sp-slider min="-90" max="90" step="1" data-p="locale.radiale.rotazione"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Sfumatura</label><sp-slider min="0" max="100" step="1" data-p="locale.radiale.sfumatura"></sp-slider><span class="val"></span></div>
+
+      <div class="etichettaSezione">Dentro l'ellisse</div>
+      <div class="riga cursore"><label>Luminosita</label><sp-slider min="-100" max="100" step="1" data-p="locale.radiale.dentro.luminosita"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Contrasto</label><sp-slider min="-100" max="100" step="1" data-p="locale.radiale.dentro.contrasto"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Struttura</label><sp-slider min="-100" max="100" step="1" data-p="locale.radiale.dentro.struttura"></sp-slider><span class="val"></span></div>
+
+      <div class="etichettaSezione">Fuori dall'ellisse</div>
+      <div class="riga cursore"><label>Luminosita</label><sp-slider min="-100" max="100" step="1" data-p="locale.radiale.fuori.luminosita"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Contrasto</label><sp-slider min="-100" max="100" step="1" data-p="locale.radiale.fuori.contrasto"></sp-slider><span class="val"></span></div>
+      <div class="riga cursore"><label>Struttura</label><sp-slider min="-100" max="100" step="1" data-p="locale.radiale.fuori.struttura"></sp-slider><span class="val"></span></div>
+      <div class="nota">Esempio da camera oscura: dentro +15 di luminosita e +20 di struttura sul soggetto, fuori -30 di luminosita per bruciare lo sfondo. Spostare o ridimensionare l'ellisse ridisegna solo le maschere; cambiare la struttura di segno ricostruisce la pila.</div>
     </section>
 
     <!-- ============ GRANA ============ -->
@@ -267,6 +309,7 @@
   <script src="src/core/state.js"></script>
   <script src="src/core/lut.js"></script>
   <script src="src/core/xmp.js"></script>
+  <script src="src/core/radiale.js"></script>
   <script src="src/core/file.js"></script>
   <script src="src/ui/log.js"></script>
   <script src="src/ps/actions.js"></script>
@@ -275,6 +318,7 @@
   <script src="src/ps/provini.js"></script>
   <script src="src/ps/lotto.js"></script>
   <script src="src/ui/curva.js"></script>
+  <script src="src/ui/radiale.js"></script>
   <script src="src/ui/main.js"></script>
 </div>
 </body>

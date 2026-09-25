@@ -22,6 +22,7 @@
     viraggio: "BN · Viraggio",
     split: "BN · Split toning",
     vignetta: "BN · Vignetta",
+    radiale: "BN · Radiale",
     grana: "BN · Grana",
     bordo: "BN · Bordo"
   };
@@ -325,6 +326,148 @@
     return livello;
   }
 
+  /* ------------------------------------------------------------------ */
+  /* Maschera radiale                                                    */
+  /* ------------------------------------------------------------------ */
+
+  /* Nomi dei livelli della maschera radiale. Il verso della struttura sta
+     nel nome: se cambia segno serve ricostruire, altrimenti basta
+     l'opacita. */
+  function nomeRadialeTono(lato) { return NOMI.radiale + " · " + lato; }
+  function nomeRadialeStruttura(lato, v) {
+    return NOMI.radiale + " · struttura" + (v < 0 ? " morbida" : "") + " " + lato;
+  }
+
+  /* Elenco dei livelli che la ricetta richiede, nell'ordine di costruzione. */
+  function livelliRadialeAttesi(r) {
+    var R = BN.radiale;
+    var elenco = [];
+    if (!R.attiva(r)) return elenco;
+    ["dentro", "fuori"].forEach(function (lato) {
+      var v = U.clamp(r[lato].struttura || 0, -100, 100);
+      if (v) elenco.push({ nome: nomeRadialeStruttura(lato, v), lato: lato, tipo: "struttura", valore: v });
+    });
+    ["dentro", "fuori"].forEach(function (lato) {
+      if (R.latoAttivoTono(r, lato)) elenco.push({ nome: nomeRadialeTono(lato), lato: lato, tipo: "tono" });
+    });
+    return elenco;
+  }
+
+  /* Sfocatura della maschera anche oltre il limite di 1000 px del filtro:
+     due sfocature gaussiane in fila equivalgono a una sola di raggio
+     sqrt(a² + b²). */
+  async function sfumaMaschera(sigma) {
+    var restante = sigma;
+    var passaggi = 0;
+    while (restante > 1000 && passaggi < 3) {
+      await P.sfocaturaGaussiana(1000);
+      restante = Math.sqrt(restante * restante - 1000 * 1000);
+      passaggi++;
+    }
+    if (restante >= 0.5) await P.sfocaturaGaussiana(Math.min(1000, restante));
+  }
+
+  /* Disegna la maschera ellittica sul livello: bianca dentro per il lato
+     "dentro", invertita per il lato "fuori". nuova: il livello non ha
+     ancora la sua maschera definitiva. */
+  async function mascheraRadiale(id, g, lato, nuova) {
+    var dentro = lato === "dentro";
+    await P.selezionaPerId(id);
+    if (nuova) await P.aggiungiMaschera(false);
+    await P.deseleziona();
+    await P.selezionaMaschera();
+    await P.riempiNeutro(dentro ? "nero" : "bianco");
+    await P.selezioneEllittica(g.cx - g.rx, g.cy - g.ry, g.cx + g.rx, g.cy + g.ry);
+    if (Math.abs(g.angolo) >= 0.05) {
+      /* Prima scelta: Trasforma selezione. Se questa versione di Photoshop
+         rifiuta il descrittore, l'ellisse ruotata si traccia come poligono
+         a 180 lati: dopo la sfocatura la differenza non si vede. La scelta
+         buona si ricorda. */
+      var ruotata = false;
+      if (!mascheraRadiale.poligono) {
+        try { await P.ruotaSelezione(g.angolo); ruotata = true; }
+        catch (e) {
+          mascheraRadiale.poligono = true;
+          log("Trasforma selezione rifiutato (" + ((e && e.message) || String(e)) + "): uso il poligono.");
+        }
+      }
+      if (!ruotata) {
+        await P.deseleziona();
+        await P.selezionePoligono(BN.radiale.contorno(g, 1, 180).slice(0, 180));
+      }
+    }
+    await P.riempiNeutro(dentro ? "bianco" : "nero");
+    await P.deseleziona();
+    await sfumaMaschera(g.sigma);
+    await P.selezionaCompositoRGB();
+  }
+
+  async function stadioRadiale(ricetta) {
+    var r = (ricetta.locale || {}).radiale;
+    var attesi = livelliRadialeAttesi(r);
+    if (!attesi.length) return [];
+    var doc = P.documento();
+    var g = BN.radiale.geometria(r, doc.width, doc.height);
+    var raggioStruttura = Math.max(1.5, Math.max(doc.width, doc.height) / 900);
+    var creati = [];
+    for (var i = 0; i < attesi.length; i++) {
+      var a = attesi[i];
+      var livello;
+      if (a.tipo === "struttura") {
+        livello = await livelloDettaglio(a.nome, raggioStruttura, a.valore < 0 ? -1 : 1, Math.abs(a.valore));
+      } else {
+        livello = await P.creaCurve(a.nome, BN.curve.puntiPerPhotoshop(BN.radiale.tonoLato(r, a.lato), 12));
+      }
+      await mascheraRadiale(livello.id, g, a.lato, true);
+      creati.push(livello);
+    }
+    return creati;
+  }
+
+  /* Aggiornamento leggero della maschera radiale. Restituisce false se la
+     pila va ricostruita (livelli da aggiungere o togliere, verso della
+     struttura cambiato). */
+  async function aggiornaRadiale(ricetta, cambiamento, gruppo) {
+    var r = (ricetta.locale || {}).radiale;
+    var attesi = livelliRadialeAttesi(r);
+    var presenti = [];
+    (gruppo.layers || []).forEach(function (l) {
+      if (l.name && l.name.indexOf(NOMI.radiale) === 0) presenti.push(l);
+    });
+    if (presenti.length !== attesi.length) return false;
+    var trovati = [];
+    for (var i = 0; i < attesi.length; i++) {
+      var l = P.cercaLivello(attesi[i].nome, gruppo);
+      if (!l) return false;
+      trovati.push(l);
+    }
+    if (!attesi.length) return true;
+
+    var parti = String(cambiamento).split(".");
+    var chiave = parti[2];
+    var sotto = parti[3];
+    var k;
+    if (BN.radiale.soloForma(chiave) || chiave === "forma") {
+      var doc = P.documento();
+      var g = BN.radiale.geometria(r, doc.width, doc.height);
+      for (k = 0; k < attesi.length; k++) await mascheraRadiale(trovati[k].id, g, attesi[k].lato, false);
+      return true;
+    }
+    if ((chiave === "dentro" || chiave === "fuori") && sotto) {
+      for (k = 0; k < attesi.length; k++) {
+        var a = attesi[k];
+        if (a.lato !== chiave) continue;
+        if (a.tipo === "struttura" && sotto === "struttura") {
+          await P.impostaFusione(trovati[k].id, "softLight", U.clamp(Math.round(Math.abs(a.valore)), 1, 100));
+        } else if (a.tipo === "tono" && sotto !== "struttura") {
+          await P.aggiornaCurve(trovati[k].id, BN.curve.puntiPerPhotoshop(BN.radiale.tonoLato(r, a.lato), 12));
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
   async function stadioGrana(ricetta) {
     var g = ricetta.grana || {};
     if (!g.attiva || !g.quantita) return null;
@@ -410,6 +553,7 @@
       await raccogli(stadioStruttura(ricetta));
       await raccogli(stadioStrutturaFine(ricetta));
       await raccogli(stadioDettaglio(ricetta, "chiarezza"));
+      await raccogli(stadioRadiale(ricetta));
       await raccogli(stadioViraggio(ricetta));
       await raccogli(stadioSplit(ricetta));
       await raccogli(stadioVignetta(ricetta));
@@ -444,6 +588,10 @@
   async function aggiorna(ricetta, cambiamento) {
     var gruppo = gruppoEsistente();
     if (!gruppo) return false;
+
+    if (cambiamento && String(cambiamento).indexOf("locale.radiale") === 0) {
+      return aggiornaRadiale(ricetta, cambiamento, gruppo);
+    }
 
     var strutturali = ["grana", "zone", "tono.chiarezza", "tono.struttura", "tono.luminositaDinamica",
                        "finiture.vignetta", "finiture.bordo", "pellicola", "sostituzione", "azzeramento"];

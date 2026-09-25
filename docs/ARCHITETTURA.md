@@ -32,6 +32,7 @@ uno smette di funzionare, si corregge li e tutto il resto continua a valere.
 | `state.js` | La ricetta, lo store con osservatori, la cronologia di annulla e ripristina |
 | `lut.js` | Generatore .cube e curva risultante per l'anteprima |
 | `xmp.js` | Generatore di preset Camera Raw, compresa la traduzione da sei a otto canali |
+| `radiale.js` | Maschera radiale: geometria dell'ellisse in pixel, peso della maschera sfocata, contorni per il disegno |
 | `file.js` | Lettura e scrittura su disco, cartelle memorizzate con token persistenti, libreria delle ricette |
 
 ### src/ps (dialogo con Photoshop)
@@ -50,6 +51,7 @@ uno smette di funzionare, si corregge li e tutto il resto continua a valere.
 |---|---|
 | `log.js` | Registro visibile nel pannello, indispensabile per diagnosticare i descrittori |
 | `curva.js` | Editor grafico della curva su canvas, con sole primitive supportate da UXP |
+| `radiale.js` | Editor grafico della maschera radiale su canvas, con quattro maniglie |
 | `main.js` | Collegamento fra controlli e stato, schede, esportazioni |
 
 ## Il flusso di una modifica

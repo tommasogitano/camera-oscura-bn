@@ -6,7 +6,7 @@ const fs = require("fs");
 const path = require("path");
 
 const base = path.join(__dirname, "..", "bn-studio", "src", "core");
-const moduli = ["util.js", "curve.js", "filtri.js", "bn.js", "viraggi.js", "pellicole.js", "state.js", "lut.js", "xmp.js"];
+const moduli = ["util.js", "curve.js", "filtri.js", "bn.js", "viraggi.js", "pellicole.js", "state.js", "lut.js", "xmp.js", "radiale.js"];
 const sorgente = moduli.map((m) => fs.readFileSync(path.join(base, m), "utf8")).join("\n;\n");
 
 const g = {};
@@ -202,6 +202,46 @@ verifica("la ricetta porta il filtro a ruota fino all'XMP", (() => {
   r.conversione.filtro = "tinta"; r.conversione.tintaFiltro = 0;
   const m = BN.xmp.mixCameraRaw(BN.bn.mixEffettivo(r));
   return m.Red > m.Blue;
+})());
+
+// --- maschera radiale ---
+verifica("maschera radiale: pieno al centro, vuoto lontano, meta sul bordo", (() => {
+  const g = BN.radiale.geometria({ x: 50, y: 50, larghezza: 40, altezza: 40, rotazione: 0, sfumatura: 50 }, 3000, 2000);
+  const centro = BN.radiale.peso(1500, 1000, g);
+  const lontano = BN.radiale.peso(0, 0, g);
+  const bordo = BN.radiale.peso(1500 + g.rx, 1000, g);
+  return centro > 0.99 && lontano < 0.01 && Math.abs(bordo - 0.5) < 0.02;
+})());
+verifica("maschera radiale: il peso scende andando verso l'esterno", (() => {
+  const g = BN.radiale.geometria({ larghezza: 50, altezza: 30, rotazione: 30, sfumatura: 80 }, 4000, 3000);
+  let prima = 2;
+  for (let t = 0; t <= 2; t += 0.1) {
+    const p = BN.radiale.puntoSulBordo({ ...g, rx: g.rx * t || 0.001, ry: g.ry * t || 0.001 }, 0.7);
+    const w = BN.radiale.peso(p[0], p[1], g);
+    if (w > prima + 1e-3) return false;
+    prima = w;
+  }
+  return true;
+})());
+verifica("maschera radiale: la rotazione di 90 gradi scambia gli assi", (() => {
+  const W = 2000, H = 2000;
+  const a = BN.radiale.geometria({ larghezza: 60, altezza: 20, rotazione: 0, sfumatura: 30 }, W, H);
+  const b = BN.radiale.geometria({ larghezza: 20, altezza: 60, rotazione: 90, sfumatura: 30 }, W, H);
+  const pts = [[1400, 1000], [1000, 1400], [1300, 1200], [700, 900]];
+  return pts.every((p) => Math.abs(BN.radiale.peso(p[0], p[1], a) - BN.radiale.peso(p[0], p[1], b)) < 1e-6);
+})());
+verifica("maschera radiale: spenta o senza regolazioni non crea livelli", (() => {
+  const r = JSON.parse(JSON.stringify(BN.stato.base.locale.radiale));
+  const vuota = !BN.radiale.attiva(r);
+  r.dentro.luminosita = 20;
+  const spenta = !BN.radiale.attiva(r);
+  r.attiva = true;
+  return vuota && spenta && BN.radiale.attiva(r);
+})());
+verifica("maschera radiale: la curva di un lato e monotona", (() => {
+  const tono = BN.radiale.tonoLato({ fuori: { luminosita: -40, contrasto: 35 } }, "fuori");
+  const punti = BN.curve.puntiPerPhotoshop(tono, 12);
+  return punti.length === 12 && punti.every((p, i) => i === 0 || p[1] >= punti[i - 1][1]) && punti[6][1] < punti[6][0];
 })());
 
 console.log("\n" + (errori ? errori + " verifiche fallite\n" : "Tutte le verifiche superate.\n"));

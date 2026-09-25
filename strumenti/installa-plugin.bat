@@ -19,6 +19,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0crea-ccx.ps1"
 if errorlevel 1 ( echo   Creazione del pacchetto non riuscita. & pause & exit /b 1 )
 
 for %%F in ("%~dp0..\dist\CameraOscuraBN-*.ccx") do set PACCHETTO=%%~fF
+rem A parita di versione l'installatore non sovrascrive: prima si rimuove.
+"%UPIA%" /remove "Camera Oscura BN" >nul 2>&1
 "%UPIA%" /install "%PACCHETTO%"
 if errorlevel 1 ( echo   Installazione non riuscita. & pause & exit /b 1 )
 
